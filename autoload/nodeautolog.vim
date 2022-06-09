@@ -12,7 +12,6 @@ function! nodeautolog#testPython()
   python3 << endpy
     print('hi')
   endpy
-
 endfunction
 
 function! nodeautolog#RunInNode()
