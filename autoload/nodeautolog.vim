@@ -1,3 +1,9 @@
+function! nodeautolog#testPython()
+  python3 << endpy
+    print('hi')
+  endpy
+endfunction
+
 function! nodeautolog#ShowNodeLog()
   lcd %:p:h
   call nodeautolog#testPython()
@@ -6,12 +12,6 @@ endfunction
 
 function! nodeautolog#MarkLineToLog()
   A /*log*/
-endfunction
-
-function! nodeautolog#testPython()
-  python3 << endpy
-    print('hi')
-  endpy
 endfunction
 
 function! nodeautolog#RunInNode()
