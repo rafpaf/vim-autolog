@@ -34,3 +34,9 @@ true          isInDict("cat") === true
 
 You can mark multiple lines in the file, and you'll see all the outputs when
 pressing <leader>n.
+
+If you're using Typescript, add a line like this to the file:
+
+```js
+// run as: /Users/me/path/to/dist/main.js # The compiled js file
+```
