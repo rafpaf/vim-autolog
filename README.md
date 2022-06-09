@@ -23,7 +23,7 @@ Or choose other shortcut keys.
 
 Type `<leader>N` to mark to a line of code with the comment `/*log*/`. Type
 `<leader>n` to show the output. (For me, `<leader>` is a comma, so I just type
-`,N`. That's because I have `let mapleader = ","` in my `.vimrc`.)
+`,n` and `,N`. That's because I have `let mapleader = ","` in my `.vimrc`.)
 
 For example, suppose your script has a line like this:
 
