@@ -8,22 +8,30 @@ map <leader>n :ShowNodeLog<CR>
 map <leader>N :MarkLineToLog<CR>
 ```
 
-Type <leader>N to mark to a line of code with the comment `/*log*/`. Type <leader>n to show the output.
+Or choose other shortcut keys.
 
-For example, suppoe your script has a line like this:
+Type `<leader>N` to mark to a line of code with the comment `/*log*/`. Type
+`<leader>n` to show the output. (For me, `<leader>` is a comma, so I just type
+`,N`. That's because I have `let mapleader = ","` in my `.vimrc`.)
+)
+
+For example, suppose your script has a line like this:
 
 ```js
 isInDict("cat") === true;
 ```
 
-You can mark it by typing <leader>N, and then it'll look like this:
+Typing <leader>N marks the line like so:
 
 ```js
 isInDict("cat") === true; /*log*/
 ```
 
-Then when you type <leader>n, you'll see this at the bottom of the screen:
+Type <leader>n, and you'll see this at the bottom of the screen:
 
 ```
 true          isInDict("cat") === true
 ```
+
+You can mark multiple lines in the file, and you'll see all the outputs when
+pressing <leader>n.
