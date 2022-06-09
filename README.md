@@ -25,22 +25,23 @@ Type `<leader>N` to mark to a line of code with the comment `/*log*/`. Type
 `<leader>n` to show the output. (For me, `<leader>` is a comma, so I just type
 `,n` and `,N`. That's because I have `let mapleader = ","` in my `.vimrc`.)
 
-For example, suppose your script has a line like this:
+For example, suppose you want to know the output of the function `hello()`.
+Type the expression whose output you want to see:
 
 ```js
-isInDict("cat") === true;
+hello()
 ```
 
 Typing `<leader>N` marks the line like so:
 
 ```js
-isInDict("cat") === true; /*log*/
+hello() /*log*/
 ```
 
-Type `<leader>n`, and you'll see this at the bottom of the screen:
+Type `<leader>n`, and you'll see the output at the bottom of the screen:
 
 ```
-true          isInDict("cat") === true
+Hello, everyone!        hello()
 ```
 
 You can mark multiple lines in the file, and you'll see all the outputs when
