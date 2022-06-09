@@ -1,12 +1,9 @@
-function! nodeautolog#testPython()
-  python3 << endpy
-    print('hi')
-  endpy
-endfunction
 
 function! nodeautolog#ShowNodeLog()
   lcd %:p:h
-  call nodeautolog#testPython()
+  python3 << endpy
+    print('hi')
+  endpy
   "split \| terminal node-autolog %
 endfunction
 
