@@ -26,7 +26,7 @@ Type `<leader>N` to mark to a line of code with the comment `/*log*/`. Type
 `,n` and `,N`. That's because I have `let mapleader = ","` in my `.vimrc`.)
 
 For example, suppose you want to know the output of the function `hello()`.
-Type the expression whose output you want to see:
+Add a line to your script:
 
 ```js
 hello()
