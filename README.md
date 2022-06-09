@@ -3,6 +3,8 @@
 This vim plugin allows you to iterate more quickly in javascript by creating a
 shortcut key for checking the output of a line of code.
 
+<img src='https://raw.githubusercontent.com/rafpaf/github-images/master/vim-autolog-js.gif'>
+
 ## Installation with vim-plug
 
 Add to `.vimrc`:
