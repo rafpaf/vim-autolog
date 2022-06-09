@@ -38,5 +38,5 @@ pressing <leader>n.
 If you're using Typescript, add a line like this to the file:
 
 ```js
-// run as: /Users/me/path/to/dist/main.js # The compiled js file
+// run as: /path/to/compiled_js_file.js 
 ```
