@@ -13,7 +13,7 @@ import subprocess
 colorize = True
 
 filename = vim.eval("s:current_file")
-print(filename)
+#print(filename)
 
 # First see if we should autolog this file or a related file (this is useful
 # when using TypeScript)
@@ -36,7 +36,7 @@ for line in lines:
     marked = re.match('.* %s$' % mark, line)
     # If the line is not marked, just print it
     if not marked:
-        script = "%s\n%s" (script, line)
+        script = "%s\n%s" % (script, line)
     else:
         line = re.sub('; %s$' % mark,'', line)
         line = re.sub('%s$' % mark,'', line)
@@ -51,18 +51,13 @@ for line in lines:
             else:
                 expr = line
             # To the script, add the value of the expression, then two tabs, then the expression
-            script = "%s\nconsole.log(%s, '\t\t', %s)" % (script, expr, escaped_line)
+            script = "%s\nconsole.log(%s, '        ', %s)" % (script, expr, escaped_line)
 
-output = subprocess.run(["node"], text=True, input=script, capture_output=True)
+output = subprocess.run(["node"], text=True, input=script, capture_output=True).stdout
 print(output)
 endpy
-"split \| terminal node-autolog %
 endfunction
 
 function! nodeautolog#MarkLineToLog()
-  A /*log*/
+  execute ":normal! A /*log*/"
 endfunction
-
-"function! nodeautolog#RunInNode()
-"
-"endfunction
