@@ -31,20 +31,20 @@ For example, suppose your script has a line like this:
 isInDict("cat") === true;
 ```
 
-Typing <leader>N marks the line like so:
+Typing `<leader>N` marks the line like so:
 
 ```js
 isInDict("cat") === true; /*log*/
 ```
 
-Type <leader>n, and you'll see this at the bottom of the screen:
+Type `<leader>n`, and you'll see this at the bottom of the screen:
 
 ```
 true          isInDict("cat") === true
 ```
 
 You can mark multiple lines in the file, and you'll see all the outputs when
-pressing <leader>n.
+pressing `<leader>n`.
 
 If you're using Typescript, add a line like this to the file:
 
