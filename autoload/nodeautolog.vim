@@ -10,8 +10,6 @@ import re
 import json
 import subprocess
 
-colorize = True
-
 filename = vim.eval("s:current_file")
 #print(filename)
 
@@ -27,8 +25,6 @@ for line in lines:
 
 script = ""
 
-if colorize:
-    script += "const chalk = require('chalk');"
 for line in lines:
     # Additional whitespace at end of line does not matter.
     line = line.rstrip()
@@ -46,10 +42,7 @@ for line in lines:
             script = "%s\n%s" % (script, line)
         else:
             escaped_line = json.dumps(line)
-            if colorize:
-                expr = "chalk.blue(%s)" % line
-            else:
-                expr = line
+            expr = line
             # To the script, add the value of the expression, then two tabs, then the expression
             script = "%s\nconsole.log(%s, '        ', %s)" % (script, expr, escaped_line)
 
