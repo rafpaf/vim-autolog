@@ -1,6 +1,6 @@
 function! nodeautolog#ShowNodeLog()
   lcd %:p:h
-  nodeautolog#testPython()
+  call nodeautolog#testPython()
   "split \| terminal node-autolog %
 endfunction
 
