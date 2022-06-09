@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+:
+# In .vimrc, there's this command: `map <leader>N :!node-autolog %<CR>`. So if
+# you type <leader>N, you'll get a little window that logs the output of a line
+# ending in a double semicolon.
+runas=`cat $@ | grep "^// run as: " | sed 's/.. run as: //'`
+if [[ -z $runas ]]; then
+  runas=$@ 
+fi
+
+pwd
+cat $runas | log_marked_lines_in_js | node

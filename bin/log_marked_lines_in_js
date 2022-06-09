@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+import sys
+import re
+import json
+
+colorize = True
+
+if colorize:
+    print("const chalk = require('chalk');")
+for line in sys.stdin:
+    # Additional whitespace at end of line does not matter.
+    line = line.rstrip()
+    mark="/\*log\*/"
+    marked = re.match('.* %s$' % mark, line)
+    # If the line is not marked, just print it
+    if not marked:
+        print(line)
+    else:
+        line = re.sub('; %s$' % mark,'', line)
+        line = re.sub('%s$' % mark,'', line)
+        # Don't log this line if it is a comment
+        nested_comment = line.startswith("// ")
+        if nested_comment:
+            print(line)
+        else:
+            escaped_line = json.dumps(line)
+            if colorize:
+                expr = "chalk.blue(%s)" % line
+            else:
+                expr = line
+            # print the line, then two tabs, then an e
+            print("console.log(%s, '\t\t', %s)" % (expr, escaped_line))
