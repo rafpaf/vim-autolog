@@ -10,17 +10,40 @@ import re
 import json
 import subprocess
 
+languages = {
+    'node': {
+        'extensions': ['.js','.ts'],
+        'command': 'node',
+        'single_line_comment_prefix': "//",
+        'mark': "/*log*/",
+        'strip_from_end': ";",
+        'make_log_command': lambda line: "console.log(%s, '        ', %s)" % (line, json.dumps(line))
+    },
+    'elixir': {
+        'extensions': ['.ex'],
+        'command': 'iex',
+        'single_line_comment_prefix': "#",
+        'mark': "# log",
+        'strip_from_end': ";",
+        'make_log_command': lambda line: "IO.puts(\"#{%s}        %s\")" % (line, line)
+        }
+}
+
 filename = vim.eval("s:current_file")
-#print(filename)
+extension = re.findall("\.[a-z]*$", filename)[0]
+lang = [languages[l] for l in languages if extension in languages[l]['extensions']][0]
 
 # First see if we should autolog this file or a related file (this is useful
 # when using TypeScript)
 f = open(filename, "r")
 lines = f.readlines()
+run_as_regexp = "^%s run as: " % lang['single_line_comment_prefix']
+print(run_as_regexp)
 for line in lines:
-    if re.match("^// run as: ", line):
-        line = re.sub("// run as: ", "", line)
-        f = open(line, "r")
+    if re.match(run_as_regexp, line):
+        line = line.rstrip()
+        run_as_filename = re.sub(run_as_regexp, "", line)
+        f = open(run_as_filename, "r")
         lines = f.readlines()
 
 script = ""
@@ -28,25 +51,24 @@ script = ""
 for line in lines:
     # Additional whitespace at end of line does not matter.
     line = line.rstrip()
-    mark="/\*log\*/"
-    marked = re.match('.* %s$' % mark, line)
+    marked = re.match('.* %s$' % re.escape(lang['mark']), line) != None
     # If the line is not marked, just print it
     if not marked:
         script = "%s\n%s" % (script, line)
     else:
-        line = re.sub('; %s$' % mark,'', line)
-        line = re.sub('%s$' % mark,'', line)
+        line = re.sub('; %s$' % lang['mark'],'', line)
+        line = re.sub('%s$' % lang['mark'],'', line)
         # Don't log this line if it is a comment
-        nested_comment = line.startswith("// ")
+        nested_comment = line.startswith(lang['single_line_comment_prefix'])
         if nested_comment:
             script = "%s\n%s" % (script, line)
         else:
-            escaped_line = json.dumps(line)
-            expr = line
+            # TODO: make this language-specific
             # To the script, add the value of the expression, then two tabs, then the expression
-            script = "%s\nconsole.log(%s, '        ', %s)" % (script, expr, escaped_line)
+            log_command = lang['make_log_command'](line)
+            script = "%s\n%s" % (script, log_command)
 
-output = subprocess.run(["node"], text=True, input=script, capture_output=True).stdout
+output = subprocess.run([lang['command']], text=True, input=script, capture_output=True).stdout
 print(output)
 endpy
 endfunction
