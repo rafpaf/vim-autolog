@@ -1,6 +1,6 @@
-let s:current_file=expand('%:p')
-
 function! autolog#ShowLog()
+
+let s:current_file=expand('%:p')
   
 lcd %:p:h
 python3 << endpy
@@ -32,13 +32,13 @@ languages = {
 filename = vim.eval("s:current_file")
 extension = re.findall("\.[a-z]*$", filename)[0]
 lang = [languages[l] for l in languages if extension in languages[l]['extensions']][0]
+print(lang['mark'])
 
 # First see if we should autolog this file or a related file (this is useful
 # when using TypeScript)
 f = open(filename, "r")
 lines = f.readlines()
 run_as_regexp = "^%s run as: " % lang['single_line_comment_prefix']
-print(run_as_regexp)
 for line in lines:
     if re.match(run_as_regexp, line):
         line = line.rstrip()
@@ -74,5 +74,10 @@ endpy
 endfunction
 
 function! autolog#MarkLineToLog()
-  execute ":normal! A /*log*/"
+    if (&ft=='elixir')
+        execute ":normal! A # log"
+    endif
+    if (&ft=='javascript')
+        execute ":normal! A /*log*/"
+    endif
 endfunction
