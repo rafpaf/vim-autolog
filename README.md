@@ -29,7 +29,7 @@ Type `<leader>N` to mark a line of code as loggable. The word "log" will appear
 at the end of the line, commented out. Type `<leader>n` to show the output.
 
 For example, suppose you are writing in javascript, and wish to know the
-output of the function `hello()`. Add a line to your script:
+output of the function `hello`. Add a line to your script:
 
 ```js
 hello()
