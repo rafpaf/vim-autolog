@@ -63,5 +63,5 @@ have `let mapleader = ","` in my `.vimrc`.
 
 # Alternatives
 
-[Codi][https://github.com/metakirby5/codi.vim] is a much better library on the
+Codi (https://github.com/metakirby5/codi.vim) is a much better library on the
 whole, but I find that this simple plugin works better for elixir.
