@@ -25,12 +25,11 @@ map <leader>N :MarkLineToLog<CR>
 
 Or choose other shortcut keys.
 
-Type `<leader>N` to mark to a line of code with the comment `/*log*/`. Type
-`<leader>n` to show the output. (For me, `<leader>` is a comma, so I just type
-`,n` and `,N`. That's because I have `let mapleader = ","` in my `.vimrc`.)
+Type `<leader>N` to mark a line of code as loggable. The word "log" will appear
+at the end of the line, commented out. Type `<leader>n` to show the output.
 
-For example, suppose you want to know the output of the function `hello()`.
-Add a line to your script:
+For example, suppose you are writing in javascript, and wish to know the
+output of the function `hello()`. Add a line to your script:
 
 ```js
 hello()
@@ -56,3 +55,13 @@ If you're using Typescript, add a line like this to the file:
 ```js
 // run as: /path/to/compiled_js_file.js 
 ```
+
+# .vimrc note
+
+For me, `<leader>` is a comma, so I just type `,n` and `,N`. That's because I
+have `let mapleader = ","` in my `.vimrc`.
+
+# Alternatives
+
+[Codi][https://github.com/metakirby5/codi.vim] is a much better library on the
+whole, but I find that this simple plugin works better for elixir.
