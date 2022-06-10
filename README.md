@@ -1,7 +1,9 @@
-# vim-autolog-js
+# vim-autolog
 
-This vim plugin allows you to iterate more quickly in javascript by creating a
+This vim plugin allows you to iterate more quickly by creating a
 shortcut key for checking the output of a line of code.
+
+Currently supported languages: javascript and elixir
 
 <img src='https://raw.githubusercontent.com/rafpaf/github-images/master/vim-autolog-js.gif'>
 
@@ -9,7 +11,7 @@ shortcut key for checking the output of a line of code.
 
 Add to `.vimrc`:
 ```
-Plug 'rafpaf/vim-autolog-js'
+Plug 'rafpaf/vim-autolog'
 ```
 
 ## How to use
@@ -17,7 +19,7 @@ Plug 'rafpaf/vim-autolog-js'
 Add these mappings to your `.vimrc`:
 
 ```vim
-map <leader>n :ShowNodeLog<CR>
+map <leader>n :ShowLog<CR>
 map <leader>N :MarkLineToLog<CR>
 ```
 

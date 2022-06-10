@@ -1,6 +1,6 @@
 let s:current_file=expand('%:p')
 
-function! nodeautolog#ShowNodeLog()
+function! autolog#ShowLog()
   
 lcd %:p:h
 python3 << endpy
@@ -73,6 +73,6 @@ print(output)
 endpy
 endfunction
 
-function! nodeautolog#MarkLineToLog()
+function! autolog#MarkLineToLog()
   execute ":normal! A /*log*/"
 endfunction
